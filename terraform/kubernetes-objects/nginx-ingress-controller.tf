@@ -14,12 +14,12 @@ resource "helm_release" "ingress_nginx" {
 
   repository = "https://kubernetes.github.io/ingress-nginx"
   chart      = "ingress-nginx"
-  
+
 }
 
 data "kubernetes_service" "ingress_nginx_controller" {
   depends_on = [helm_release.ingress_nginx]
-  
+
   metadata {
     namespace = kubernetes_namespace.ingress_nginx.metadata[0].name
     name = "ingress-nginx-controller"
